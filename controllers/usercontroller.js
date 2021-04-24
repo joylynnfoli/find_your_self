@@ -6,7 +6,7 @@ const db = require("../db");
 const User = db.import("../models/user");
 
 //register
-router.post("/create", (req, res) => {
+router.post("/signup", (req, res) => {
   User.create({
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 13),
