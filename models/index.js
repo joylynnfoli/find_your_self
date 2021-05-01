@@ -1,15 +1,15 @@
-const Comments =  require('./comment')
-const Library = require('./library')
-const User = require('./user')
+const Comments = require("./comment");
+const Topics = require("./Topics");
+const User = require("./user");
 
-User.hasMany(Library)
-Library.belongsTo(User)
+User.hasMany(Topics);
+Topics.belongsTo(User);
 
-Library.hasMany(Comments)
-Comments.belongsTo(Library)
+Topics.hasMany(Comments);
+Comments.belongsTo(Topics);
 
 module.exports = {
-    Comments,
-    Library,
-    User,
-}
+  Comments,
+  Topics,
+  User,
+};

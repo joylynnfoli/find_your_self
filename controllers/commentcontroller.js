@@ -13,7 +13,7 @@ router.get("/comment", validateSession, function (req, res) {
 router.post("/add/:entryId", validateSession, (req, res) => {
   const commentEntry = {
     user_id: req.user.id,
-    videoId: req.params.entryId,
+    topicId: req.params.entryId,
     note: req.body.comment.note,
   };
 

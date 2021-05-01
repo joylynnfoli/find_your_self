@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const sequelize = require("./db");
 const user = require("./controllers/usercontroller");
-const library = require("./controllers/librarycontroller");
+const topics = require("./controllers/topicscontroller");
 const comment = require("./controllers/commentcontroller");
 
 sequelize.sync();
@@ -16,7 +16,7 @@ app.use(require("./middleware/headers"));
 app.use("/user", user);
 
 app.use(require("./middleware/validate-session"));
-app.use("/library", library);
+app.use("/topics", topics);
 app.use("/comment", comment);
 
 app.listen(process.env.PORT, function () {
