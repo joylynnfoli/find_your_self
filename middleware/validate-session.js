@@ -3,7 +3,7 @@ const User = require("../db").import("../models/user");
 
 const validateSession = (req, res, next) => {
   const token = req.headers.authorization;
-  console.log("token -->", token);  
+  ("token -->", token);  
   if (!token) {
     return res.status(403).send({ auth: false, message: "no Token provided" });
   } else {
