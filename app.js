@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const cors = require("cors")
 const sequelize = require("./db");
 const user = require("./controllers/usercontroller");
 const topics = require("./controllers/topicscontroller");
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(require("./middleware/headers"));
 
 app.use("/user", user);
-
+app.use(cors())
 app.use(require("./middleware/validate-session"));
 app.use("/topics", topics);
 app.use("/comment", comment);

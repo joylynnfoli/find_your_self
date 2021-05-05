@@ -13,7 +13,8 @@ router.get("/about", function (req, res) {
   res.send("Hey!! This is the about route!");
 });
 /****Topics CREATE*****/
-router.post("/add", validateSession, (req, res) => {
+// router.post("/add", validateSession, (req, res) => { 
+router.post("/add", (req, res) => {
   const topicsEntry = {
     user_id: req.user.id,
     playlistId: req.body.topics.playlistId,
@@ -29,7 +30,7 @@ router.post("/add", validateSession, (req, res) => {
     );
 });
 
-router.get("/mine", validateSession, (req, res) => {
+router.get("/mine", (req, res) => {
   let userid = req.user.id;
   Topics.findAll({
     where: { user_id: userid },
