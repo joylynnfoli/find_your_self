@@ -39,6 +39,13 @@ router.get("/mine", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
+router.get("/all", (req, res) => {
+    Topics.findAll({
+    })
+    .then((Topics) => res.status(200).json(Topics))
+    .catch((err) => res.status(500).json({ error: err }));
+});
+
 router.put("/update/:entryId", validateSession, function (req, res) {
   const updateTopicsEntry = {
     note: req.body.Topics.note,
