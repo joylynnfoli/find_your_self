@@ -58,7 +58,7 @@ router.put("/update/:entryId", validateSession, function (req, res) {
 });
 
 router.delete("/delete/:id", validateSession, function (req, res) {
-  const query = { where: { id: req.params.id, user_id: req.user.id } };
+  const query = { where: { id: req.params.id } };
 
   Topics.destroy(query)
     .then(() => res.status(200).json({ message: "URL Removed" }))
