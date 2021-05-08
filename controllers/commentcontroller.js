@@ -14,20 +14,20 @@ router.post("/add/:entryId", validateSession, (req, res) => {
   const commentEntry = {
     user_id: req.user.id,
     topicId: req.params.entryId,
-    note: req.body.comment.note,
+    note: req.body.note,
   };
 
-  const query = { where: { id: req.params.entryId } };
+  const query = { where: { entryId: req.params.entryId } };
   Comment.create(commentEntry, query)
 
     .then((comment) => res.status(200).json(comment))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-router.get("/mine", validateSession, (req, res) => {
-  let userid = req.user.id;
+router.get("/all:id", validateSession, (req, res) => {
+  // let userid = req.user.id;
   Comment.findAll({
-    where: { user_id: userid },
+    where: { id: req.params.id },
   })
     .then((comment) => res.status(200).json(comment))
     .catch((err) => res.status(500).json({ error: err }));

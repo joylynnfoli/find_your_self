@@ -46,7 +46,7 @@ router.get("/all", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/one/:id", (req, res) => {
   Topics.findOne({
     where: {id: req.params.id}
   })
@@ -56,10 +56,10 @@ router.get("/:id", (req, res) => {
 
 router.put("/update/:entryId", validateSession, function (req, res) {
   const updateTopicsEntry = {
-    note: req.body.Topics.note,
+    note: req.body.topics.note,
   };
 
-  const query = { where: { id: req.params.entryId, user_id: req.user.id } };
+  const query = { where: { id: req.params.entryId } };
   Topics.update(updateTopicsEntry, query)
     .then((Topics) => res.status(200).json(Topics))
     .catch((err) => res.status(500).json({ error: err }));
