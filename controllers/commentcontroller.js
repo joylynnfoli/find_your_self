@@ -5,6 +5,8 @@ const validateSession = require("../middleware/validate-session");
 
 const Comment = require("../db").import("../models/comment");
 
+const Topics = require("../db").import("../models/topics");
+
 router.get("/comment", validateSession, function (req, res) {
   res.send("Hey!! This is a comment route!");
 });
@@ -24,10 +26,21 @@ router.post("/add/:entryId", validateSession, (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-router.get("/all:id", validateSession, (req, res) => {
+// router.get("/all/:id", validateSession, (req, res) => {
+//   let userid = req.user.id;
+//   Topics.findOne({
+//     where: { id: req.params.id },
+//     include: Comment
+//   })
+//     .then((comment) => res.status(200).json(comment))
+//     .catch((err) => res.status(500).json({ error: err }));
+// });
+
+router.get("/all/:topicId", validateSession, (req, res) => {
   // let userid = req.user.id;
   Comment.findAll({
-    where: { id: req.params.id },
+    where: { topicId: req.params.topicId },
+    // include: Comment,
   })
     .then((comment) => res.status(200).json(comment))
     .catch((err) => res.status(500).json({ error: err }));

@@ -3,7 +3,9 @@ const router = express.Router();
 
 const validateSession = require("../middleware/validate-session");
 
-const Topics = require("../db").import("../models/Topics");
+const Topics = require("../db").import("../models/topics");
+
+const Comment = require("../db").import("../models/comment");
 
 router.get("/practice", validateSession, function (req, res) {
   res.send("Hey!! This is a practice route!");
@@ -41,14 +43,17 @@ router.get("/mine", (req, res) => {
 
 router.get("/all", (req, res) => {
     Topics.findAll({
+      // where: { id: req.params.id },
+      // include: Comment
     })
-    .then((Topics) => res.status(200).json(Topics))
-    .catch((err) => res.status(500).json({ error: err }));
+      .then((Topics) => res.status(200).json(Topics))
+      .catch((err) => res.status(500).json({ error: err }));
 });
 
 router.get("/one/:id", (req, res) => {
   Topics.findOne({
-    where: {id: req.params.id}
+    where: {id: req.params.id}, 
+    include: Comment
   })
   .then((Topics) => res.status(200).json(Topics))
   .catch((err) => res.status(500).json({ error: err }));

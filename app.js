@@ -7,7 +7,7 @@ const user = require("./controllers/usercontroller");
 const topics = require("./controllers/topicscontroller");
 const comment = require("./controllers/commentcontroller");
 
-sequelize.sync();
+sequelize.sync()
 // sequelize.sync({ force: true });
 
 app.use(express.json());
