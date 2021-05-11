@@ -26,22 +26,11 @@ router.post("/add/:entryId", validateSession, (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-// router.get("/all/:id", validateSession, (req, res) => {
-//   let userid = req.user.id;
-//   Topics.findOne({
-//     where: { id: req.params.id },
-//     include: Comment
-//   })
-//     .then((comment) => res.status(200).json(comment))
-//     .catch((err) => res.status(500).json({ error: err }));
-// });
-
 router.get("/all/:topicId", validateSession, (req, res) => {
   // let userid = req.user.id;
   Comment.findAll({
     where: { topicId: req.params.topicId },
-    // include: Comment,
-  })
+    })
     .then((comment) => res.status(200).json(comment))
     .catch((err) => res.status(500).json({ error: err }));
 });
@@ -50,8 +39,6 @@ router.put("/update/:entryId", validateSession, function (req, res) {
   const updateCommentEntry = {
     note: req.body.comment.note,
   };
-
-  // const query = { where: { id: req.params.entryId, user_id: req.user.id } };
 
   const query = { where: { id: req.params.entryId } };
 

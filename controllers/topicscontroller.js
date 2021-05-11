@@ -15,7 +15,6 @@ router.get("/about", function (req, res) {
   res.send("Hey!! This is the about route!");
 });
 /****Topics CREATE*****/
-// router.post("/add", validateSession, (req, res) => { 
 router.post("/add", (req, res) => {
   const topicsEntry = {
     user_id: req.user.id,
@@ -43,8 +42,6 @@ router.get("/mine", (req, res) => {
 
 router.get("/all", (req, res) => {
     Topics.findAll({
-      // where: { id: req.params.id },
-      // include: Comment
     })
       .then((Topics) => res.status(200).json(Topics))
       .catch((err) => res.status(500).json({ error: err }));
