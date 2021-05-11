@@ -1,7 +1,14 @@
 const Sequelize = require ('sequelize');
-const sequelize = new Sequelize('find_your_self_server', 'postgres', 'password',{
-    host: 'localhost',
-    dialect: 'postgres'
+const sequelize = new sequelize(process.env.DATABASE_URL, {
+// const sequelize = new Sequelize('find_your_self_server', 'postgres', 'password',{
+//     host: 'localhost',
+//     dialect: 'postgres'
+dialectOptions: {
+    ssL:{
+        require: true,
+        rejectUnauthorized: false
+    }
+}
 });
 
 sequelize.authenticate().then(
