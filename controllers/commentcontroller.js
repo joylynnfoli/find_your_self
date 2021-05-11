@@ -51,7 +51,9 @@ router.put("/update/:entryId", validateSession, function (req, res) {
     note: req.body.comment.note,
   };
 
-  const query = { where: { id: req.params.entryId, user_id: req.user.id } };
+  // const query = { where: { id: req.params.entryId, user_id: req.user.id } };
+
+  const query = { where: { id: req.params.entryId } };
 
   Comment.update(updateCommentEntry, query)
     .then((comment) => res.status(200).json(comment))

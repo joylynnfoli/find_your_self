@@ -53,7 +53,7 @@ router.get("/all", (req, res) => {
 router.get("/one/:id", (req, res) => {
   Topics.findOne({
     where: {id: req.params.id}, 
-    include: Comment
+    // include: Comment
   })
   .then((Topics) => res.status(200).json(Topics))
   .catch((err) => res.status(500).json({ error: err }));
